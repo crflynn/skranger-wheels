@@ -1,7 +1,7 @@
 env:
     global:
         - REPO_DIR="skranger"
-        - BUILD_COMMIT="0.1.1"
+        - BUILD_COMMIT="0.2.0"
         - BUILD_DEPENDS="cython numpy"
         - UNICODE_WIDTH=32
         - TWINE_USERNAME="crflynn"

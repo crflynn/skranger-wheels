@@ -1,7 +1,7 @@
 env:
     global:
         - REPO_DIR="skranger"
-        - BUILD_COMMIT="0.3.0"
+        - BUILD_COMMIT="0.3.1"
         - BUILD_DEPENDS="cython numpy"
         - UNICODE_WIDTH=32
         - TWINE_USERNAME="crflynn"
@@ -34,6 +34,13 @@ matrix:
       env:
         - MB_PYTHON_VERSION=3.8
         - PLAT=i686
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.9
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.9
+#        - PLAT=i686
     - os: osx
       osx_image: xcode12
       env:
@@ -46,6 +53,10 @@ matrix:
       osx_image: xcode12
       env:
         - MB_PYTHON_VERSION=3.8
+    - os: osx
+      osx_image: xcode12
+      env:
+        - MB_PYTHON_VERSION=3.9
 
 before_install:
     - source multibuild/common_utils.sh

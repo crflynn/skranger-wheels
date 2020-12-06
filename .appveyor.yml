@@ -58,9 +58,13 @@ build_script:
     - poetry run pip install --user --upgrade pip setuptools
     # Install the dependencies of the project.
     - poetry run pip install --user %BUILD_DEPS%
+    # Do some windows patching in order to build
+    - poetry run pip install patch
+    - poetry run patch %PYTHON%\lib\distutils\cygwinccompiler.py C:\projects\skranger-wheels\winpatch\patch.diff
+    - copy C:\projects\skranger-wheels\winpatch\distutils.cfg %PYTHON%\lib\distutils\distutils.cfg
     # Build wheel
     - poetry run python buildpre.py
-    - poetry run python build.py build_ext --inplace --force --compiler=mingw32
+    - poetry build
     - cd ..
 
 test_script:

@@ -62,6 +62,8 @@ build_script:
     - poetry run pip install patch
     - poetry run patch %PYTHON%\lib\distutils\cygwinccompiler.py C:\projects\skranger-wheels\winpatch\patch.diff
     - copy C:\projects\skranger-wheels\winpatch\distutils.cfg %PYTHON%\lib\distutils\distutils.cfg
+    - SET DISTUTILS_USE_SDK=1
+    - SET MSSdk=1
     # Build wheel
     - poetry run python buildpre.py
     - poetry build

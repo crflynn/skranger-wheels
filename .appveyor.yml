@@ -1,5 +1,5 @@
 # cant figure out how to use c++11 on appveyor
-image: Visual Studio 2013
+#image: Visual Studio 2013
 
 environment:
 
@@ -20,6 +20,8 @@ environment:
     - PYTHON: C:\Python37-x64
     - PYTHON: C:\Python38
     - PYTHON: C:\Python38-x64
+    - PYTHON: C:\Python39
+    - PYTHON: C:\Python39-x64
 
 #matrix:
 #    fast_finish: true
@@ -62,8 +64,8 @@ build_script:
     - poetry run pip install patch
     - poetry run patch %PYTHON%\lib\distutils\cygwinccompiler.py C:\projects\skranger-wheels\winpatch\patch.diff
     - copy C:\projects\skranger-wheels\winpatch\distutils.cfg %PYTHON%\lib\distutils\distutils.cfg
-    - SET DISTUTILS_USE_SDK=1
-    - SET MSSdk=1
+#    - SET DISTUTILS_USE_SDK=1
+#    - SET MSSdk=1
     # Build wheel
     - poetry run python buildpre.py
     - poetry build

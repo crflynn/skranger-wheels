@@ -43,7 +43,6 @@ install:
     # http://stackoverflow.com/questions/32091593/cannot-install-windows-sdk-7-1-on-windows-10
     - echo "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64 > "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64/vcvars64.bat"
     - SET PATH=C:\MinGW\bin;%PATH%
-    - SET CC=g++
 
     # Check that we have the expected version and architecture for Python
     - python --version
@@ -68,7 +67,10 @@ build_script:
 #    - SET DISTUTILS_USE_SDK=1
 #    - SET MSSdk=1
     # Build wheel
+    - SET
     - poetry run python buildpre.py
+    - poetry run cython skranger/ensemble/ranger.pyx -+ --3str
+    - C:\MinGW\bin\g++.exe -mdll -O -Wall -DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION -IC:\projects\skranger-wheels\skranger -IC:\projects\skranger-wheels\skranger\skranger\ensemble -IC:\projects\skranger-wheels\skranger\skranger\ensemble\ranger\src -IC:\projects\skranger-wheels\skranger\skranger\ensemble\ranger\src\Forest -IC:\projects\skranger-wheels\skranger\skranger\ensemble\ranger\src\Tree -IC:\projects\skranger-wheels\skranger\skranger\ensemble\ranger\src\utility -IC:\Users\appveyor\AppData\Roaming\Python\Python36\site-packages\numpy\core\include -IC:\Python36\include -IC:\Python36\include -c skranger\ensemble\ranger.cpp -o C:\projects\skranger-wheels\skranger\build\temp.win32-3.6\Release\skranger\ensemble\ranger.o -std=c++11 -Wall
     - poetry build
     - cd ..
 

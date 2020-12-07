@@ -1,5 +1,5 @@
 # cant figure out how to use c++11 on appveyor
-#image: Visual Studio 2013
+image: Visual Studio 2013
 
 environment:
 
@@ -7,7 +7,7 @@ environment:
     REPO_DIR: skranger
     PACKAGE_NAME: skranger
     BUILD_COMMIT: 0.3.1
-    BUILD_DEPS: "cython numpy"
+    BUILD_DEPS: "cython==3.0a5 numpy"
     TWINE_USERNAME: crflynn
 #    TWINE_PASSWORD:
 #        secure:
@@ -43,6 +43,7 @@ install:
     # http://stackoverflow.com/questions/32091593/cannot-install-windows-sdk-7-1-on-windows-10
     - echo "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64 > "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64/vcvars64.bat"
     - SET PATH=C:\MinGW\bin;%PATH%
+    - SET CC=g++
 
     # Check that we have the expected version and architecture for Python
     - python --version

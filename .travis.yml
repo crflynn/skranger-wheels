@@ -1,78 +1,78 @@
-env:
-    global:
-        - REPO_DIR="skranger"
-        - BUILD_COMMIT="0.3.2"
-        - BUILD_DEPENDS="cython numpy"
-        - UNICODE_WIDTH=32
-        - TWINE_USERNAME="crflynn"
-        - secure: "ebjrcFwXYjFOyva6ojB1K45BX83Yr+AQhrn+ymUgoRhKan7Mu/l4SQ85n0z1LAW6dd1T7/XfZLoGI4yP0IpJeCCKTcw/LmolNPN83GRyDvd7zijwMVCKxR+jqj9OJ2sBAg81b/P4zWW9whggYuUh/r3E2R1mI/br9aH5/etl6igY326s6Z0Sxd1BjySMFFjg7ozJE2pOvVjTuLRxsvhJ29Nr4VTPaCCpNtMPhiXACI7atSBYdNum1X9C1z1N2nvcrREAc7bCrXZO4eINyQGD11Cz6n+3U5VMyeYnl6uQ6RTg9HTiVyS+fgFLOPvFHWC3gsQoxa/GoJE3Wb+2MDRlhNvnGRmS4wlyeMe9vLmuObszrt4Nit+vTSHm3AK43P+qwlrfLf9qhl6gAWmfD+VA7PuS9IGXGBcJRpELL1EDL4dH0xRhGvu0MV86SnYerarkO11DIkgolP42L/nuBTiykvSB5DVBOM8L7wC74Rsr4IjwRg5ygb85GmkWSWwr+kOppBUuvste/C5MiE5R34ui6adw0rX/bu2eZkVG4NChNBtSbiwTRxBILQznbyRHUHAK1l3tLx/4HZNfJ3FKActw1Pkvq5HeM+AFmLwoFMaL0Kccm9O5yD/VAeTiMRBz8m92LsKbuMC2BCBmjkQgvLu+jNNa0TS33nHPF44UYKef8qY="
-
-language: generic
-services: docker
-dist: bionic
-
-matrix:
-  include:
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.7
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.8
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.9
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.9
-        - PLAT=i686
-    - os: osx
-      osx_image: xcode12
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: osx
-      osx_image: xcode12
-      env:
-        - MB_PYTHON_VERSION=3.7
-    - os: osx
-      osx_image: xcode12
-      env:
-        - MB_PYTHON_VERSION=3.8
-    - os: osx
-      osx_image: xcode12
-      env:
-        - MB_PYTHON_VERSION=3.9
-
-before_install:
-    - source multibuild/common_utils.sh
-    - source multibuild/travis_steps.sh
-    - before_install
-
-install:
-    - clean_code $REPO_DIR $BUILD_COMMIT
-    - build_wheel $REPO_DIR $PLAT
-
-script:
-    - install_run $PLAT
-
-after_success:
-  - |
-    if [ -n "$TRAVIS_TAG" ] && [ "$TRAVIS_REPO_SLUG" == "crflynn/skranger-wheels" ]; then
-      pip install --upgrade twine
-      twine upload wheelhouse/*.whl
-    fi
+#env:
+#    global:
+#        - REPO_DIR="skranger"
+#        - BUILD_COMMIT="0.3.2"
+#        - BUILD_DEPENDS="cython numpy"
+#        - UNICODE_WIDTH=32
+#        - TWINE_USERNAME="crflynn"
+#        - secure: "ebjrcFwXYjFOyva6ojB1K45BX83Yr+AQhrn+ymUgoRhKan7Mu/l4SQ85n0z1LAW6dd1T7/XfZLoGI4yP0IpJeCCKTcw/LmolNPN83GRyDvd7zijwMVCKxR+jqj9OJ2sBAg81b/P4zWW9whggYuUh/r3E2R1mI/br9aH5/etl6igY326s6Z0Sxd1BjySMFFjg7ozJE2pOvVjTuLRxsvhJ29Nr4VTPaCCpNtMPhiXACI7atSBYdNum1X9C1z1N2nvcrREAc7bCrXZO4eINyQGD11Cz6n+3U5VMyeYnl6uQ6RTg9HTiVyS+fgFLOPvFHWC3gsQoxa/GoJE3Wb+2MDRlhNvnGRmS4wlyeMe9vLmuObszrt4Nit+vTSHm3AK43P+qwlrfLf9qhl6gAWmfD+VA7PuS9IGXGBcJRpELL1EDL4dH0xRhGvu0MV86SnYerarkO11DIkgolP42L/nuBTiykvSB5DVBOM8L7wC74Rsr4IjwRg5ygb85GmkWSWwr+kOppBUuvste/C5MiE5R34ui6adw0rX/bu2eZkVG4NChNBtSbiwTRxBILQznbyRHUHAK1l3tLx/4HZNfJ3FKActw1Pkvq5HeM+AFmLwoFMaL0Kccm9O5yD/VAeTiMRBz8m92LsKbuMC2BCBmjkQgvLu+jNNa0TS33nHPF44UYKef8qY="
+#
+#language: generic
+#services: docker
+#dist: bionic
+#
+#matrix:
+#  include:
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.6
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.6
+#        - PLAT=i686
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.7
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.7
+#        - PLAT=i686
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.8
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.8
+#        - PLAT=i686
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.9
+#    - os: linux
+#      env:
+#        - MB_PYTHON_VERSION=3.9
+#        - PLAT=i686
+#    - os: osx
+#      osx_image: xcode12
+#      env:
+#        - MB_PYTHON_VERSION=3.6
+#    - os: osx
+#      osx_image: xcode12
+#      env:
+#        - MB_PYTHON_VERSION=3.7
+#    - os: osx
+#      osx_image: xcode12
+#      env:
+#        - MB_PYTHON_VERSION=3.8
+#    - os: osx
+#      osx_image: xcode12
+#      env:
+#        - MB_PYTHON_VERSION=3.9
+#
+#before_install:
+#    - source multibuild/common_utils.sh
+#    - source multibuild/travis_steps.sh
+#    - before_install
+#
+#install:
+#    - clean_code $REPO_DIR $BUILD_COMMIT
+#    - build_wheel $REPO_DIR $PLAT
+#
+#script:
+#    - install_run $PLAT
+#
+#after_success:
+#  - |
+#    if [ -n "$TRAVIS_TAG" ] && [ "$TRAVIS_REPO_SLUG" == "crflynn/skranger-wheels" ]; then
+#      pip install --upgrade twine
+#      twine upload wheelhouse/*.whl
+#    fi

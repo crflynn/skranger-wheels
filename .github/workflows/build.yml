@@ -1,3 +1,5 @@
+name: build
+
 env:
   REPO_DIR: "skranger"
   BUILD_COMMIT: "0.3.2"

@@ -10,6 +10,7 @@ function pre_build {
 
 function run_tests {
     python -c "import skranger; print(skranger.__version__)"
+    python -c "from skranger import ranger"
 }
 
 function build_wheel {

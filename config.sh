@@ -85,8 +85,10 @@ function publish_wheel {
         echo $IS_OSX
         if [ -n "$IS_OSX" ]; then
             cd skranger
-            pip install --upgrade twine
-            twine upload $wheelhouse/*.whl
+            source $HOME/.poetry/env
+            poetry config virtualenvs.create false
+            poetry run pip install --upgrade twine
+            poetry run twine upload $wheelhouse/*.whl
         else
             pip install --upgrade twine
             twine upload $wheelhouse/*.whl
